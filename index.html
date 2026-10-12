@@ -1,210 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ben Kannheiser | Supply Chain Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        html { scroll-behavior: smooth; }
-        .carousel-track { scrollbar-width: none; }
-        .carousel-track::-webkit-scrollbar { display: none; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ben Kannheiser | Supply Chain Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f1b2d;
+      --scarlet: #cc0033;
+      --concrete: #e8eaed;
+      --paper: #f6f7f8;
+      --steel: #5b6675;
+      --font: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--scarlet); outline-offset: 3px; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Top bar */
+    .bar { border-bottom: 2px solid var(--ink); }
+    .bar .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; padding-bottom: 1rem; }
+    .bar strong { font-stretch: 112%; font-weight: 800; letter-spacing: -.01em; }
+    .bar nav { display: flex; gap: 1.5rem; font-weight: 500; }
+    .bar nav a { text-decoration: none; border-bottom: 2px solid transparent; }
+    .bar nav a:hover { border-color: var(--scarlet); }
+
+    /* Hero: the personal statement is the headline */
+    .hero { padding: 5rem 0 5.5rem; }
+    .hero .name { color: var(--scarlet); font-weight: 700; margin-bottom: 1.25rem; }
+    .hero h1 {
+      font-stretch: 118%;
+      font-weight: 800;
+      font-size: clamp(2rem, 5.2vw, 3.9rem);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+      max-width: 20ch;
+    }
+    .hero p.sub { margin-top: 1.75rem; max-width: 56ch; color: var(--steel); font-size: 1.15rem; }
+
+    /* Skills conveyor */
+    .skills { background: var(--ink); color: #fff; padding: 3.5rem 0 3.75rem; overflow: hidden; }
+    .skills h2, .projects h2 { font-stretch: 112%; font-weight: 800; font-size: 1.9rem; letter-spacing: -.02em; }
+    .skills .intro { color: #aab4c3; margin: .5rem 0 2.25rem; max-width: 52ch; }
+    .lane { display: flex; width: max-content; margin-bottom: 1rem; animation: slide 38s linear infinite; }
+    .lane.rev { animation-direction: reverse; animation-duration: 46s; }
+    .tag {
+      flex: none;
+      margin-right: 1rem;
+      padding: .7rem 1.4rem;
+      border: 2px solid #fff;
+      border-left: 10px solid var(--scarlet);
+      font-stretch: 105%;
+      font-weight: 700;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      background: #16253b;
+    }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* Projects as a shipment log */
+    .projects { padding: 4.5rem 0 3rem; }
+    .projects .intro { color: var(--steel); margin: .5rem 0 2.5rem; max-width: 52ch; }
+    .job { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem 2.5rem; padding: 1.75rem 0; border-top: 2px solid var(--ink); }
+    .job:last-child { border-bottom: 2px solid var(--ink); }
+    .job .meta { color: var(--steel); font-size: .95rem; }
+    .job .meta b { display: block; color: var(--ink); font-weight: 700; }
+    .job h3 { font-stretch: 108%; font-weight: 800; font-size: 1.4rem; line-height: 1.25; margin-bottom: .5rem; }
+    .job p { max-width: 62ch; margin-bottom: .9rem; }
+    .job .links a { font-weight: 700; margin-right: 1.4rem; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--scarlet); }
+    .job .links a:hover { color: var(--scarlet); }
+
+    /* Contact */
+    .contact { background: var(--concrete); padding: 3.5rem 0; margin-top: 3rem; }
+    .contact h2 { font-stretch: 112%; font-weight: 800; font-size: 1.9rem; letter-spacing: -.02em; margin-bottom: .75rem; }
+    .contact p { max-width: 52ch; margin-bottom: 1.25rem; }
+    .contact .row { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .btn { display: inline-block; padding: .7rem 1.4rem; font-weight: 700; text-decoration: none; border: 2px solid var(--ink); }
+    .btn.solid { background: var(--ink); color: #fff; }
+    .btn:hover { background: var(--scarlet); border-color: var(--scarlet); color: #fff; }
+    footer { padding: 1.5rem 0; color: var(--steel); font-size: .9rem; }
+
+    @media (max-width: 720px) {
+      .job { grid-template-columns: 1fr; gap: .5rem; }
+      .hero { padding: 3.25rem 0 3.5rem; }
+      .bar nav { gap: 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .lane { animation: none; }
+      .skills .belt { overflow-x: auto; }
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+<body>
 
-    <!-- Navigation -->
-    <nav class="bg-white border-b border-slate-100 shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <span class="text-2xl font-bold text-red-700">RU</span>
-                <div class="h-6 w-px bg-slate-200"></div>
-                <h1 class="text-xl font-semibold tracking-tight">Ben's Portfolio</h1>
-            </div>
-            <div class="flex items-center gap-6 text-sm font-medium text-slate-700">
-                <a href="#about" class="hover:text-red-700 transition">About</a>
-                <a href="#skills" class="hover:text-red-700 transition">Skills</a>
-                <a href="#projects" class="hover:text-red-700 transition">Projects</a>
-                <a href="resume.pdf" class="bg-slate-900 text-white px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-red-700 transition">Download Resume</a>
-            </div>
-        </div>
-    </nav>
+  <header class="bar">
+    <div class="wrap">
+      <strong>Ben Kannheiser</strong>
+      <nav aria-label="Sections">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero / About -->
-    <main id="about" class="flex-grow max-w-7xl mx-auto px-6 py-16 md:py-24 w-full">
-        <div class="grid md:grid-cols-12 gap-12 items-center">
-
-            <div class="md:col-span-4 flex flex-col items-center text-center">
-                <img src="headshot.jpg" alt="Photo of Ben Kannheiser" class="w-48 h-48 rounded-full shadow-lg border-4 border-white mb-6 object-cover">
-                <h2 class="text-2xl font-extrabold text-slate-950">Ben Kannheiser</h2>
-                <p class="text-red-700 font-medium">Supply Chain Management Major</p>
-                <p class="text-slate-600 text-sm mt-1">Rutgers University–New Brunswick</p>
-            </div>
-
-            <div class="md:col-span-8 space-y-6">
-                <span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-800">
-                    Open to Internships
-                </span>
-                <h3 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tighter">Keeping products moving from supplier to customer.</h3>
-                <p class="text-xl text-slate-600 leading-relaxed max-w-3xl">
-                    I'm Ben, a supply chain management student at Rutgers University–New Brunswick. I use data analysis and process thinking to find inefficiencies in inventory, logistics, and sourcing, and I'm building the skills to turn those findings into practical improvements.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="mailto:your.email@example.com" class="bg-white border border-slate-200 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold shadow-sm hover:shadow-lg transition">Email Me</a>
-                    <a href="https://www.linkedin.com/in/yourprofile" class="text-sm font-semibold px-6 py-3 text-slate-700 hover:text-red-700">LinkedIn Profile →</a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Skills Carousel -->
-    <section id="skills" class="bg-white py-16 md:py-24 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-end justify-between mb-10 gap-6">
-                <div>
-                    <h3 class="text-3xl font-extrabold text-slate-950 mb-3 tracking-tight">Skills</h3>
-                    <p class="text-slate-600 max-w-2xl">Core areas I've studied and applied, from planning and analysis to day-to-day operations.</p>
-                </div>
-                <div class="hidden sm:flex gap-3">
-                    <button id="prevBtn" aria-label="Previous skills" class="w-11 h-11 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white transition">←</button>
-                    <button id="nextBtn" aria-label="Next skills" class="w-11 h-11 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white transition">→</button>
-                </div>
-            </div>
-
-            <div id="skillsTrack" class="carousel-track flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth">
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Planning</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">Demand Planning & Forecasting</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Using historical sales data to anticipate demand and set production and purchasing targets.</p>
-                </div>
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Inventory</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">Inventory Management</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Balancing stock levels, reorder points, and carrying costs to limit shortages and excess.</p>
-                </div>
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Logistics</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">Logistics & Transportation</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Understanding freight modes, routing, and distribution networks that move goods efficiently.</p>
-                </div>
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Sourcing</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">Procurement & Sourcing</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Evaluating suppliers on cost, quality, and reliability to build dependable supply relationships.</p>
-                </div>
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Analytics</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">Excel & Data Analysis</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Pivot tables, lookup functions, and formula-driven models to turn raw data into decisions.</p>
-                </div>
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Systems</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">ERP Systems (SAP)</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Working with enterprise systems that connect purchasing, inventory, and order management.</p>
-                </div>
-
-                <div class="snap-start shrink-0 w-72 sm:w-80 rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-700 bg-red-100 px-3 py-1 rounded-full">Improvement</span>
-                    <h4 class="text-xl font-semibold text-slate-950 mt-5 mb-3">Lean & Six Sigma</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">Mapping processes, removing waste, and reducing variation in operations.</p>
-                </div>
-
-            </div>
-        </div>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="name">Supply chain management, Rutgers University–New Brunswick</p>
+        <h1>I'm a supply chain student who uses data to get the right product to the right place at the right time.</h1>
+        <p class="sub">I'm looking for internships in planning, logistics, and procurement where I can learn how real networks run and help make them run better.</p>
+      </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-3xl font-extrabold text-slate-950 mb-4 tracking-tight">Projects</h3>
-            <p class="text-slate-600 mb-12 max-w-2xl">Selected coursework and projects that show how I apply supply chain concepts.</p>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="border border-slate-100 rounded-2xl p-8 bg-white flex flex-col gap-5 shadow-sm hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">[Category]</span>
-                        <div class="flex gap-2">
-                            <span class="text-slate-400 text-xs">[Tool]</span>
-                            <span class="text-slate-400 text-xs">[Tool]</span>
-                        </div>
-                    </div>
-                    <h4 class="text-xl font-semibold text-slate-950">[Project 1 Title]</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed flex-grow">[One or two sentences: the problem, what you did, and the result.]</p>
-                    <div class="h-px bg-slate-100 w-full mt-auto"></div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-slate-500">[Course Name]</span>
-                        <a href="https://github.com/yourusername/project1" class="text-xs font-semibold text-red-700 hover:underline">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="border border-slate-100 rounded-2xl p-8 bg-white flex flex-col gap-5 shadow-sm hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-widest text-sky-700 bg-sky-100 px-3 py-1 rounded-full">[Category]</span>
-                        <div class="flex gap-2">
-                            <span class="text-slate-400 text-xs">[Tool]</span>
-                            <span class="text-slate-400 text-xs">[Tool]</span>
-                        </div>
-                    </div>
-                    <h4 class="text-xl font-semibold text-slate-950">[Project 2 Title]</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed flex-grow">[One or two sentences: the problem, what you did, and the result.]</p>
-                    <div class="h-px bg-slate-100 w-full mt-auto"></div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-slate-500">[Course Name]</span>
-                        <a href="https://github.com/yourusername/project2" class="text-xs font-semibold text-red-700 hover:underline">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="border border-slate-100 rounded-2xl p-8 bg-white flex flex-col gap-5 shadow-sm hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100 px-3 py-1 rounded-full">[Category]</span>
-                        <div class="flex gap-2">
-                            <span class="text-slate-400 text-xs">[Tool]</span>
-                            <span class="text-slate-400 text-xs">[Tool]</span>
-                        </div>
-                    </div>
-                    <h4 class="text-xl font-semibold text-slate-950">[Project 3 Title]</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed flex-grow">[One or two sentences: the problem, what you did, and the result.]</p>
-                    <div class="h-px bg-slate-100 w-full mt-auto"></div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-slate-500">[Course Name]</span>
-                        <a href="assets/project3.pdf" class="text-xs font-semibold text-red-700 hover:underline">View Project →</a>
-                    </div>
-                </div>
-
-            </div>
+    <section class="skills" id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <p class="intro">What I can bring to a planning, logistics, or sourcing team.</p>
+      </div>
+      <div class="belt" aria-label="List of skills">
+        <div class="lane">
+          <span class="tag">Demand Planning</span>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Inventory Management</span>
+          <span class="tag">Procurement &amp; Sourcing</span>
+          <span class="tag">Logistics &amp; Transportation</span>
+          <span class="tag">Warehouse Operations</span>
         </div>
+        <div class="lane rev">
+          <span class="tag">Excel: Pivot Tables &amp; VLOOKUP</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">ERP Systems (SAP)</span>
+          <span class="tag">Lean &amp; Six Sigma</span>
+          <span class="tag">Supplier Evaluation</span>
+          <span class="tag">Problem Solving</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-300 py-12 mt-auto">
-        <div class="max-w-7xl mx-auto px-6 text-sm text-center">
-            <p class="font-semibold text-white mb-2">Ben Kannheiser • Supply Chain Management, Rutgers University–New Brunswick</p>
-            <p>Feel free to reach out about internships, projects, or industry questions.</p>
-            <div class="flex justify-center gap-6 mt-6">
-                <a href="https://www.linkedin.com/in/yourprofile" class="hover:text-white">LinkedIn</a>
-                <a href="mailto:your.email@example.com" class="hover:text-white">Email</a>
-                <a href="https://github.com/yourusername" class="hover:text-white">GitHub</a>
-                <a href="resume.pdf" class="hover:text-white">Resume PDF</a>
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <p class="intro">Coursework and hands-on work that shows how I apply supply chain concepts.</p>
+
+        <article class="job">
+          <div class="meta"><b>[Course or Organization]</b>[Tools used, e.g., Excel, SAP]</div>
+          <div>
+            <h3>[Project 1 Title]</h3>
+            <p>[One or two sentences: the problem, what you did, and the result.]</p>
+            <div class="links">
+              <a href="https://github.com/yourusername/project1">View code</a>
+              <a href="https://your-live-demo-link.com">Live demo</a>
             </div>
-        </div>
-    </footer>
+          </div>
+        </article>
 
-    <script>
-        const track = document.getElementById('skillsTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const step = () => track.firstElementChild.offsetWidth + 24; // card width + gap
+        <article class="job">
+          <div class="meta"><b>[Course or Organization]</b>[Tools used]</div>
+          <div>
+            <h3>[Project 2 Title]</h3>
+            <p>[One or two sentences: the problem, what you did, and the result.]</p>
+            <div class="links">
+              <a href="https://github.com/yourusername/project2">View code</a>
+            </div>
+          </div>
+        </article>
 
-        prevBtn.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-        nextBtn.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-    </script>
+        <article class="job">
+          <div class="meta"><b>[Course or Organization]</b>[Tools used]</div>
+          <div>
+            <h3>[Project 3 Title]</h3>
+            <p>[One or two sentences: the problem, what you did, and the result.]</p>
+            <div class="links">
+              <a href="https://github.com/yourusername/project3">View code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let's talk</h2>
+      <p>I'm happy to chat about internships, projects, or how your supply chain works.</p>
+      <div class="row">
+        <a class="btn solid" href="mailto:benkannheiser@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/benkannheiser/">LinkedIn</a>
+        <a class="btn" href="https://github.com/benkannheiser">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">Ben Kannheiser, Rutgers University–New Brunswick</div>
+  </footer>
+
+  <script>
+    // Duplicate each lane's contents so the loop is seamless (the CSS moves it by exactly half).
+    document.querySelectorAll('.lane').forEach(function (lane) {
+      var originals = Array.from(lane.children);
+      // Repeat the set until one half is wider than the screen, then double it.
+      var half = lane.scrollWidth;
+      while (half < window.innerWidth * 1.2) {
+        originals.forEach(function (el) { lane.appendChild(el.cloneNode(true)); });
+        half = lane.scrollWidth;
+      }
+      Array.from(lane.children).forEach(function (el) {
+        var copy = el.cloneNode(true);
+        copy.setAttribute('aria-hidden', 'true');
+        lane.appendChild(copy);
+      });
+    });
+  </script>
 
 </body>
 </html>
