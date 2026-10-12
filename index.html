@@ -50,6 +50,15 @@
     }
     .hero p.sub { margin-top: 1.75rem; max-width: 56ch; color: var(--steel); font-size: 1.15rem; }
 
+
+    .empty { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: 2.25rem 0; margin-top: 1.5rem; color: var(--steel); font-size: 1.15rem; }
+
+    /* Headshot */
+    .hero .wrap { display: grid; grid-template-columns: 1fr 260px; gap: 3rem; align-items: center; }
+    .headshot { position: relative; width: 260px; height: 320px; background: var(--concrete); border: 2px solid var(--ink); border-bottom: 10px solid var(--scarlet); display: grid; place-items: center; overflow: hidden; }
+    .headshot span { font-stretch: 118%; font-weight: 800; font-size: 3.5rem; color: var(--steel); }
+    .headshot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
     /* Skills conveyor */
     .skills { background: var(--ink); color: #fff; padding: 3.5rem 0 3.75rem; overflow: hidden; }
     .skills h2, .projects h2 { font-stretch: 112%; font-weight: 800; font-size: 1.9rem; letter-spacing: -.02em; }
@@ -69,6 +78,22 @@
       background: #16253b;
     }
     @keyframes slide { to { transform: translateX(-50%); } }
+
+
+    /* Resume */
+    .resume { padding: 4.5rem 0 1rem; }
+    .resume .wrap { display: grid; grid-template-columns: 1fr 300px; gap: 3.5rem; align-items: center; }
+    .resume h2 { font-stretch: 112%; font-weight: 800; font-size: 1.9rem; letter-spacing: -.02em; }
+    .resume p { color: var(--steel); margin: .5rem 0 1.75rem; max-width: 46ch; }
+    .resume .row { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .sheet { position: relative; justify-self: center; width: 280px; height: 360px; padding: 1.6rem 1.4rem; background: #fff; border: 2px solid var(--ink); box-shadow: 12px 12px 0 var(--scarlet); transform: rotate(-2.5deg); text-decoration: none; display: block; }
+    .sheet::after { content: ""; position: absolute; top: -2px; right: -2px; width: 44px; height: 44px; background: linear-gradient(225deg, var(--paper) 50%, var(--concrete) 50%); border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+    .sheet b { display: block; font-stretch: 112%; font-weight: 800; font-size: 1.25rem; line-height: 1.2; }
+    .sheet small { display: block; color: var(--steel); font-size: .8rem; margin-bottom: 1.1rem; }
+    .sheet i { display: block; height: 7px; background: var(--concrete); margin-bottom: .6rem; }
+    .sheet i.h { width: 38%; height: 9px; background: var(--ink); margin-top: 1.1rem; }
+    .sheet i.s { width: 72%; }
+    .sheet em { position: absolute; right: 1rem; bottom: 1.1rem; font-style: normal; font-stretch: 118%; font-weight: 800; font-size: 1rem; color: var(--scarlet); border: 3px solid var(--scarlet); padding: .15rem .6rem; transform: rotate(-8deg); }
 
     /* Projects as a shipment log */
     .projects { padding: 4.5rem 0 3rem; }
@@ -95,6 +120,8 @@
     @media (max-width: 720px) {
       .job { grid-template-columns: 1fr; gap: .5rem; }
       .hero { padding: 3.25rem 0 3.5rem; }
+      .hero .wrap, .resume .wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .headshot { order: -1; width: 200px; height: 250px; }
       .bar nav { gap: 1rem; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -111,6 +138,7 @@
       <strong>Ben Kannheiser</strong>
       <nav aria-label="Sections">
         <a href="#skills">Skills</a>
+        <a href="#resume">Resume</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -120,9 +148,16 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <p class="name">Supply chain management, Rutgers University–New Brunswick</p>
-        <h1>I'm a supply chain student who uses data to get the right product to the right place at the right time.</h1>
-        <p class="sub">I'm looking for internships in planning, logistics, and procurement where I can learn how real networks run and help make them run better.</p>
+        <div>
+          <p class="name">Supply chain management, Rutgers University–New Brunswick</p>
+          <h1>I'm a supply chain student who uses data to get the right product to the right place at the right time.</h1>
+          <p class="sub">I'm looking for internships in planning, logistics, and procurement where I can learn how real networks run and help make them run better.</p>
+        </div>
+        <!-- Headshot: save your photo as headshot.jpg in the same folder as index.html -->
+        <div class="headshot">
+          <span>BK</span>
+          <img src="headshot.jpg" alt="Photo of Ben Kannheiser" onerror="this.remove()">
+        </div>
       </div>
     </section>
 
@@ -151,44 +186,32 @@
       </div>
     </section>
 
+    <section class="resume" id="resume">
+      <div class="wrap">
+        <div>
+          <h2>Resume</h2>
+          <p>My education, coursework, and experience on one page. Download the PDF or open it in a new tab.</p>
+          <div class="row">
+            <a class="btn solid" href="resume.pdf" download>Download PDF</a>
+            <a class="btn" href="resume.pdf" target="_blank" rel="noopener">View in browser</a>
+          </div>
+        </div>
+        <!-- Save your resume as resume.pdf in the same folder as index.html -->
+        <a class="sheet" href="resume.pdf" target="_blank" rel="noopener" aria-label="Open resume PDF">
+          <b>Ben Kannheiser</b>
+          <small>Supply Chain Management, Rutgers</small>
+          <i class="h"></i><i></i><i class="s"></i>
+          <i class="h"></i><i></i><i></i><i class="s"></i>
+          <i class="h"></i><i></i><i class="s"></i>
+          <em>RESUME</em>
+        </a>
+      </div>
+    </section>
+
     <section class="projects" id="projects">
       <div class="wrap">
         <h2>Projects</h2>
-        <p class="intro">Coursework and hands-on work that shows how I apply supply chain concepts.</p>
-
-        <article class="job">
-          <div class="meta"><b>[Course or Organization]</b>[Tools used, e.g., Excel, SAP]</div>
-          <div>
-            <h3>[Project 1 Title]</h3>
-            <p>[One or two sentences: the problem, what you did, and the result.]</p>
-            <div class="links">
-              <a href="https://github.com/yourusername/project1">View code</a>
-              <a href="https://your-live-demo-link.com">Live demo</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="job">
-          <div class="meta"><b>[Course or Organization]</b>[Tools used]</div>
-          <div>
-            <h3>[Project 2 Title]</h3>
-            <p>[One or two sentences: the problem, what you did, and the result.]</p>
-            <div class="links">
-              <a href="https://github.com/yourusername/project2">View code</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="job">
-          <div class="meta"><b>[Course or Organization]</b>[Tools used]</div>
-          <div>
-            <h3>[Project 3 Title]</h3>
-            <p>[One or two sentences: the problem, what you did, and the result.]</p>
-            <div class="links">
-              <a href="https://github.com/yourusername/project3">View code</a>
-            </div>
-          </div>
-        </article>
+        <p class="empty">There isn't anything here yet, but I'm looking to add projects in the future!</p>
       </div>
     </section>
   </main>
