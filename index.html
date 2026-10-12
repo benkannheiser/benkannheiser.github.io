@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ben Kannheiser | Portfolio</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --card: #f3f4f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    header, section { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem; }
+    header { padding-bottom: 1rem; }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; }
+    .tagline { font-size: 1.25rem; color: var(--muted); margin-top: .5rem; }
+    .statement { font-size: 1.15rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; }
+    .skills li {
+      background: var(--primary);
+      color: #fff;
+      padding: .4rem .9rem;
+      border-radius: 999px;
+      font-size: .95rem;
+    }
+    .projects { display: grid; gap: 1.2rem; }
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 1.4rem;
+    }
+    .card h3 { margin-bottom: .4rem; }
+    .card p { color: var(--muted); margin-bottom: .6rem; }
+    .card a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+    .card a:hover { text-decoration: underline; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--card);
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ben Kannheiser</h1>
+    <p class="tagline">Supply Chain Management Major, Rutgers University–New Brunswick</p>
+  </header>
+
+  <section id="about">
+    <h2>Personal Statement</h2>
+    <p class="statement">
+      Supply chain management student at Rutgers University–New Brunswick who uses data analysis and process thinking to keep products moving efficiently from supplier to customer.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills">
+      <li>Supply Chain Management</li>
+      <li>Inventory Management</li>
+      <li>Demand Planning</li>
+      <li>Logistics &amp; Transportation</li>
+      <li>Procurement &amp; Sourcing</li>
+      <li>Excel (Pivot Tables, VLOOKUP, Formulas)</li>
+      <li>Data Analysis</li>
+      <li>ERP Systems (SAP)</li>
+      <li>Lean &amp; Six Sigma Principles</li>
+      <li>Warehouse Operations</li>
+      <li>Forecasting</li>
+      <li>Problem Solving</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>[Project 1 Title]</h3>
+        <p>[One or two sentences describing the project, the tools you used, and the result.]</p>
+        <a href="https://github.com/yourusername/project1">View Code</a>
+        <a href="https://your-live-demo-link.com">Live Demo</a>
+      </div>
+      <div class="card">
+        <h3>[Project 2 Title]</h3>
+        <p>[One or two sentences describing the project, the tools you used, and the result.]</p>
+        <a href="https://github.com/yourusername/project2">View Code</a>
+      </div>
+      <div class="card">
+        <h3>[Project 3 Title]</h3>
+        <p>[One or two sentences describing the project, the tools you used, and the result.]</p>
+        <a href="https://github.com/yourusername/project3">View Code</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      Contact: <a href="mailto:benkannheiser@gmail.com">benkannheiser@gmail.com</a> |
+      <a href="https://www.linkedin.com/in/benkannheiser/">LinkedIn</a> |
+      <a href="https://github.com/benkannheiser">GitHub</a>
+    </p>
+  </footer>
+
+</body>
+</html>
